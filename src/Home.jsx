@@ -1,13 +1,13 @@
 import { useContext } from "react";
-import { AuthContext } from "./AuthContext";
+import { AuthContext } from "./Auth/AuthContext";
 
 function Home() {
-  const { isLoggedIn, logout } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
 
   return (
     <div>
       <h1>Home</h1>
-      {isLoggedIn ? (
+      {user ? (
         <>
           <p>Welcome! You are logged in.</p>
           <button onClick={logout}>Logout</button>

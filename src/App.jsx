@@ -1,11 +1,14 @@
 import React from "react";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import { AuthProvider } from "./AuthContext";
+import { AuthProvider } from "./Auth/AuthContext";
 import Home from "./Home";
-import About from "./About";
 import Contact from "./Contact";
-import Login from "./Login";
-import Profile from "./Profile";
+import Login from "./Auth/Login";
+import SignUp from "./Auth/SignUp";
+import ConfirmSignUp from "./Auth/ConfirmSignUp";
+import Profile from "./Auth/UserProfile";
+import ForgotPassword from "./Auth/ForgotPassword";
+import ResetPassword from "./Auth/ResetPassword";
 import RouteGuard from "./RouteGuard";
 
 function App() {
@@ -35,9 +38,14 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
+            <Route path="/about" element={<Profile />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/confirm-sign-up" element={<ConfirmSignUp />} />
+
             <Route
               path="/profile"
               element={
@@ -45,7 +53,7 @@ function App() {
                   <Profile />
                 </RouteGuard>
               }
-            />{" "}
+            />
           </Routes>
         </main>
       </BrowserRouter>
