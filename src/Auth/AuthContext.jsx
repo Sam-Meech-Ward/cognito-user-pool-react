@@ -7,6 +7,15 @@ function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  const fetchUser = async () => {
+    try {
+      const user = await getCurrentUser()
+      setUser(user)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
   const getCurrentUser = async () => {
     try {
       const user = await auth.getCurrentUser();
@@ -26,10 +35,11 @@ function AuthProvider({ children }) {
   }, []);
 
   const signIn = async (username, password) => {
-    debugger;
-    await auth.signIn(username, password);
-    await fetchUser();
+    await auth.signIn(username, password).then(
+      async () => await fetchUser().then(
+        window.location.reload()))
   };
+  
   const signOut = async () => {
     await auth.signOut();
     setUser(null);

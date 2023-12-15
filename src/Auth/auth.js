@@ -104,10 +104,11 @@ export function confirmPassword(username, confirmationCode, newPassword) {
   })
 }
 
-export function signOut() {
+export async function signOut() {
   const cognitoUser = userPool.getCurrentUser();
   if (cognitoUser) {
     cognitoUser.signOut();
+    window.location.reload();
   }
 }
 
